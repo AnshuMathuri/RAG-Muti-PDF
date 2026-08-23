@@ -1,0 +1,14 @@
+pinecone
+sentence-transformers
+pypdf
+python-dotenv
+numpy
+requests
+fastapi
+uvicorn
+langchain-groq
+streamlit
+langchain-community
+langchain-huggingface
+langchain-pinecone
+langchain-core
