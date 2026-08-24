@@ -44,7 +44,7 @@ class RAGPipeline:
         self.vector_store = VectorStoreService(
             pinecone_api_key=PINECONE_API_KEY,
             embedder=self.embedder,
-            index_name="multi-query-rag-index",
+            index_name="sentence-transformer-index1",
             
         )
 
