@@ -7,7 +7,7 @@ class VectorStoreService:
         self,
         pinecone_api_key,
         embedder,
-        index_name="multi-query-rag-index"
+        index_name="sentence-transformer-index1"
     ):
 
         self.index_name = index_name
