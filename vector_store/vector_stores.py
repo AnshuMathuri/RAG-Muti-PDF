@@ -1,5 +1,6 @@
 from pinecone import Pinecone, ServerlessSpec
 from langchain_pinecone import PineconeVectorStore
+from config import PINECONE_INDEX_NAME
 
 class VectorStoreService:
 
@@ -7,7 +8,7 @@ class VectorStoreService:
         self,
         pinecone_api_key,
         embedder,
-        index_name="pinecone-vector-database-exp"
+        index_name=PINECONE_INDEX_NAME
     ):
 
         self.index_name = index_name
