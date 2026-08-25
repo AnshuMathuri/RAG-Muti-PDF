@@ -1,27 +1,14 @@
 class Retriever:
 
-    def __init__(
-        self,
-        index,
-        embedder,
-        top_k=5
-    ):
-        self.index = index
-        self.embedder = embedder
+    def __init__(self, vector_store, top_k=5):
+        self.vector_store = vector_store
         self.top_k = top_k
 
     def retrieve(self, query):
 
-        # Query ka embedding
-        query_vector = self.embedder.embed_query(query)
-
-        # Pinecone semantic search
-        results = self.index.query(
-            vector=query_vector,
-            top_k=self.top_k,
-            include_metadata=True
+        documents = self.vector_store.similarity_search(
+            query,
+            k=self.top_k
         )
 
-        matches = results.get("matches", [])
-
-        return matches
+        return documents
