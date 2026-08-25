@@ -32,12 +32,14 @@ class VectorStoreService:
 
     def create_index(self):
 
-        existing_indexes = [
+        existing_indexes = self.pc.list_indexes()
+
+        index_names = [
             index.name
-            for index in self.pc.list_indexes()
+            for index in existing_indexes
         ]
 
-        if self.index_name not in existing_indexes:
+        if self.index_name not in index_names:
 
             self.pc.create_index(
                 name=self.index_name,
@@ -51,7 +53,9 @@ class VectorStoreService:
 
     def store_documents(self, docs):
 
-        self.vector_store.add_documents(docs)
+        self.vector_store.add_documents(
+            docs
+        )
 
     def get_retriever(self, top_k=5):
 
