@@ -1,9 +1,6 @@
 import tempfile
 
-from config import (
-    GROQ_API_KEY,
-    PINECONE_API_KEY
-)
+from config import GROQ_API_KEY, PINECONE_API_KEY
 
 from loaders.pdf_loaders import DocumentService
 from splitters.chunking import TextSplitters
@@ -39,7 +36,7 @@ class RAGPipeline:
 
         # 5. Retriever
         self.retriever = Retriever(
-            vector_store=self.vector_store.get_vector_store(),
+            vector_store=self.vector_store.vector_store,
             top_k=5
         )
 
@@ -71,7 +68,7 @@ class RAGPipeline:
             pdf_path
         )
 
-        # Split into chunks
+        # Split document into chunks
         chunks = self.splitter.split_documents(
             documents
         )
@@ -94,7 +91,7 @@ class RAGPipeline:
             question
         )
 
-        # Extract text from LangChain Documents
+        # Create context
         context = "\n\n".join(
             document.page_content
             for document in results
